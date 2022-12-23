@@ -11,12 +11,12 @@ const seedMe = async () => {
         {
             name: "Halo: Combat Evolved",
             description: "Halo: Combat Evolved is a 2001 first-person shooter game developed by Bungie and published by Microsoft Game Studios.",
-            imgUrl: "https://en.wikipedia.org/wiki/Halo:_Combat_Evolved#/media/File:Halo_-_Combat_Evolved_(XBox_version_-_box_art).jpg"
+            imgUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg/220px-Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg"
         },
         {
             name: "League of Legends",
             description: "League of Legends (LoL), commonly referred to as League, is a 2009 multiplayer online battle arena video game developed and published by Riot Games.",
-            imgUrl: "https://en.wikipedia.org/wiki/League_of_Legends#/media/File:League_of_Legends_2019_vector.svg"
+            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/League_of_Legends_2019_vector.svg/1200px-League_of_Legends_2019_vector.svg.png"
         }
     ]
     try {
