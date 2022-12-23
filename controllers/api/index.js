@@ -5,7 +5,9 @@ router.post('/creategame', (req, res) => {
         console.log(req.body)
 
         Game.create({
-            name: req.body.name
+            name: req.body.name,
+            description: req.body.description,
+            imgUrl: req.body.imgUrl
         }).then(data => {
             res.json(data)
         })
