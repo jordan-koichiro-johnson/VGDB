@@ -6,7 +6,7 @@ class User extends Model { }
 
 User.init({
     // add properites here, ex:
-    userName: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
@@ -17,6 +17,10 @@ User.init({
         validate: {
             len: [8]
         }
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
 }, {
     sequelize,

@@ -19,11 +19,20 @@ const seedMe = async () => {
             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/League_of_Legends_2019_vector.svg/1200px-League_of_Legends_2019_vector.svg.png"
         }
     ]
+    const users = [
+        {
+            username: 'mainuser',
+            password: 'bigpassword',
+            email: 'email@email.com'
+        }
+    ]
     try {
 
 
         await Game.bulkCreate(games)
-
+        await User.bulkCreate(users, {
+            individualHooks: true
+        })
 
     } catch (err) {
         throw err
