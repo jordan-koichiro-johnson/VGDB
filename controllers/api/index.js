@@ -22,5 +22,16 @@ router.get('/games', (req, res) => {
     })
 })
 
+router.get('/:gamename', (req, res) => {
+    let game = req.params.gamename.split('_').join(' ')
+    Game.findOne({
+        where: {
+            name: game
+        }
+    }).then(game => {
+        res.json(game)
+    })
+})
+
 
 module.exports = router;

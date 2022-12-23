@@ -7,6 +7,14 @@ Game.init({
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    imgUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
 }, {
     sequelize,
