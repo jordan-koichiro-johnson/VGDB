@@ -32,7 +32,7 @@ router.get('/users', (req, res) => {
     })
 })
 
-router.get('game-profile/:gamename', (req, res) => {
+router.get('/game-profile/:gamename', (req, res) => {
     let game = req.params.gamename.split('_').join(' ')
     Game.findOne({
         where: {
