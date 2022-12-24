@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Profile, Game, Comment } = require('../../models');
+const { User, Profile, Game, Comment, Rating } = require('../../models');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 router.post('/creategame', (req, res) => {
@@ -25,6 +25,11 @@ router.get('/games', (req, res) => {
         res.json(users)
     })
 })
+router.get('/ratings', (req, res) => {
+    Rating.findAll().then(ratings => {
+        res.json(ratings)
+    })
+})
 
 router.get('/users', (req, res) => {
     User.findAll().then(users => {
@@ -37,6 +42,16 @@ router.get('/game-profile/:gamename', (req, res) => {
     Game.findOne({
         where: {
             name: game
+        }
+    }).then(game => {
+        res.json(game)
+    })
+})
+router.get('/game-id/:id', (req, res) => {
+    console.log(req.params.id)
+    Game.findOne({
+        where: {
+            id: req.params.id
         }
     }).then(game => {
         res.json(game)
@@ -111,6 +126,28 @@ router.get("/getuserfromtoken", (req, res) => {
         console.log(err)
         res.status(500).json({ user: false })
     }
+})
+
+router.get('/ratings-for-user', (req, res) => {
+
+    const userid = req.headers.user
+    console.log(userid)
+    if (req.headers.user > 0) {
+
+        Rating.findAll({ where: { UserId: userid } }).then(ratings => {
+            res.json(ratings)
+        })
+    }
+})
+router.get('/ratings-for-game/:id', (req, res) => {
+
+    const gameId = req.params.id
+    console.log(gameId)
+
+    Rating.findAll({ where: { GameId: gameId } }).then(ratings => {
+        res.json(ratings)
+    })
+
 })
 
 module.exports = router;

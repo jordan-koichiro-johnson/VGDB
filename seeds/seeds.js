@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Profile, Game } = require("../models");
+const { User, Profile, Game, Rating } = require("../models");
 const seedMe = async () => {
     await sequelize.sync({ force: true })
     const games = [
@@ -26,6 +26,29 @@ const seedMe = async () => {
             email: 'email@email.com'
         }
     ]
+    const ratings = [
+        {
+
+            ratingNum: 5,
+            content: 'good game',
+            UserId: 1,
+            GameId: 1,
+        },
+        {
+
+            ratingNum: 3,
+            content: 'good game',
+            UserId: 1,
+            GameId: 2,
+        },
+        {
+
+            ratingNum: 4,
+            content: 'good game',
+            UserId: 1,
+            GameId: 3,
+        }
+    ]
     try {
 
 
@@ -33,6 +56,7 @@ const seedMe = async () => {
         await User.bulkCreate(users, {
             individualHooks: true
         })
+        await Rating.bulkCreate(ratings)
 
     } catch (err) {
         throw err

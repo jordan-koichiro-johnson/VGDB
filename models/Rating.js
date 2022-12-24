@@ -7,6 +7,8 @@ Rating.init({
     ratingNum: {
         type: DataTypes.INTEGER,
         allowNull: false,
+    }, content: {
+        type: DataTypes.TEXT
     }
 }, {
     sequelize,

@@ -26,13 +26,15 @@ User.hasMany(Comment, {
 Comment.belongsTo(User)
 
 Game.hasMany(Rating, {
-    onDelete: "CASCADE"
+    onDelete: "CASCADE",
+    foreignKey: 'GameId'
 })
 
 Rating.belongsTo(Game)
 
 User.hasMany(Rating, {
-    onDelete: "CASCADE"
+    onDelete: "CASCADE",
+    foreignKey: 'UserId'
 })
 
 Rating.belongsTo(User)
