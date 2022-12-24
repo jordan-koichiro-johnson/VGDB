@@ -32,7 +32,7 @@ router.get('/users', (req, res) => {
     })
 })
 
-router.get('/:gamename', (req, res) => {
+router.get('game-profile/:gamename', (req, res) => {
     let game = req.params.gamename.split('_').join(' ')
     Game.findOne({
         where: {
@@ -72,13 +72,40 @@ router.post("/login", (req, res) => {
         })
     } catch {
         console.error()
+        res.status(500).json({ msg: "error occurred", err })
+    }
+})
+
+
+router.get('/current-user', (req, res) => {
+    console.log('user')
+    console.log(req.body)
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        console.log(token)
+        const userData = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(userData)
+        User.findOne({
+            where: {
+                id: userData.id
+            },
+        }).then(profileData => {
+            console.log(profileData)
+            res.json(profileData)
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: "error occurred", err })
     }
 })
 
 router.get("/getuserfromtoken", (req, res) => {
+    console.log('fromtoken')
     try {
+        console.log('fromtoken')
         const token = req.headers.authorization.split(" ")[1];
         const tokenData = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(tokenData)
         res.json({ user: tokenData })
     } catch (err) {
         console.log(err)
