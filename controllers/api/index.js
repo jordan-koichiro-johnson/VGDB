@@ -150,4 +150,29 @@ router.get('/ratings-for-game/:id', (req, res) => {
 
 })
 
+router.post('/createrating', (req, res) => {
+
+    try {
+        console.log(req.body)
+        Rating.destroy({
+            where: {
+                UserId: req.body.UserId,
+                GameId: req.body.GameId
+            }
+        })
+        Rating.create({
+            ratingNum: req.body.ratingNum,
+            content: req.body.content,
+            UserId: req.body.UserId,
+            GameId: req.body.GameId
+        }).then(data => {
+            res.json(data)
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: "error occurred", err })
+    }
+})
+
 module.exports = router;
